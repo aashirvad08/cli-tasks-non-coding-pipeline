@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Entry point for the CLI Tasks environment pipeline. Works from any directory.
+clitasks_root="$(cd -- "$(dirname -- "$0")" && pwd)"
+export PYTHONPATH="$clitasks_root${PYTHONPATH:+:$PYTHONPATH}"
+if [[ -x "$clitasks_root/.venv/bin/python" ]]; then
+  exec "$clitasks_root/.venv/bin/python" -m pipeline.cli "$@"
+fi
+exec python3 -m pipeline.cli "$@"
