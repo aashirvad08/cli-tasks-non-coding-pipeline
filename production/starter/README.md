@@ -21,7 +21,7 @@ SEED=<id from the table>; SLUG=<slug from the table>
 # 2. extract the session from the dump (11 GB zip, sharded; this takes one session, under a second)
 X="$(mktemp -d "$CLAUDE_SCRATCH/seed-XXXXXX")"
 python3 -I -c 'import sys, zipfile; z = zipfile.ZipFile(sys.argv[1]); [z.extract(n, sys.argv[3]) for n in z.namelist() if "/sessions/" + sys.argv[2] + "/" in n]' \
-  "$HOME/Downloads/ Oct_13_500_traces.zip" "$SEED" "$X"
+  "$HOME/Downloads/Oct_13_500_traces.zip" "$SEED" "$X"
 ls "$X"/shard-*/sessions/"$SEED"          # data.json, outcomes.json, manifest.json, files/
 # 3. scaffold, then follow START-HERE from step 2
 python3 -I production/tools/b6ctl.py new "$SLUG" --level f1 --seed "$SEED" --plan "production/starter/plan/briefs/$SEED.md"
@@ -70,7 +70,7 @@ rule_scope 2, convention_inference 2, revision_supersession 1, aggregation_basis
 
 ## How these 16 were picked
 
-1. `trace_traps.py scan` over all 281 non-coding sessions of `~/Downloads/ Oct_13_500_traces.zip`
+1. `trace_traps.py scan` over all 281 non-coding sessions of `~/Downloads/Oct_13_500_traces.zip`
    (none of them in `used_session_ids.json`).
 2. By hand: the first request of 245 sessions (after dropping image, media, chit-chat, creative and translation ones);
    then every user turn of 38 candidates. Kept: the original request supports a checkable document, the material

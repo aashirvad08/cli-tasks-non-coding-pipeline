@@ -100,7 +100,7 @@ python3 -I trace_traps.py report DIR [--top 15] [-o yield.md]
 
 **The scanned population: the Oct-13 dump.**
 
-- Source: `~/Downloads/ Oct_13_500_traces.zip`, 500 sessions, none of them in `used_session_ids.json`.
+- Source: `~/Downloads/Oct_13_500_traces.zip`, 500 sessions, none of them in `used_session_ids.json`.
 - Non-coding means no `code_*` category in the session metadata. This rule reproduces `datasets/noncode_sids.txt` exactly on `accepted_500_traces` (283 of 283, no extras). On the Oct-13 dump it gives 281 non-coding sessions.
 - Only their `data.json`, `outcomes.json` and `manifest.json` were extracted, into this session's scratch directory (700 MB). Nothing was written under W or in the repo.
 - Scanned 281 of 281, 0 unreadable, in 17 s (deterministic mode).
